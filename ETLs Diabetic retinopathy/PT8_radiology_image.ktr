@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>PT4_radiology_image</name>
+    <name>PT8_radiology_image</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -437,11 +437,11 @@
   <notepads>
   </notepads>
   <connection>
-    <name>Tartaglia_PT4</name>
+    <name>Tartaglia_PT8</name>
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>Tartaglia_PT4</database>
+    <database>Tartaglia_PT8</database>
     <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
@@ -489,6 +489,21 @@
   </connection>
   <order>
     <hop>
+      <from>Añadir error id</from>
+      <to>Escribir log error</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Búsqueda personid</from>
+      <to>Paciente no nulo</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Correspondencia imagenes</from>
+      <to>Conexión a radiology_image</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Filtrar jsons</from>
       <to>JSON input </to>
       <enabled>Y</enabled>
@@ -499,6 +514,16 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Obtener ids</from>
+      <to>Ordenar por patientid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Paciente no nulo</from>
+      <to>Añadir error id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Rutas </from>
       <to>Filtrar jsons</to>
       <enabled>Y</enabled>
@@ -506,6 +531,16 @@
     <hop>
       <from>Rutas </from>
       <to>Filtrar scans.tsv</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Secuencia id_image </from>
+      <to>Correspondencia imagenes</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unión por patientid</from>
+      <to>Imágenes únicas</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -544,6 +579,16 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Obtener ids 2</from>
+      <to>Valores de interés 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Valores de interés 2</from>
+      <to>Obtener GRD</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Contenido sessions</from>
       <to>Formato date 2</to>
       <enabled>Y</enabled>
@@ -559,8 +604,18 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Ordenar session_id scans</from>
+      <to>Unión por session</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Ordenar session_id sessions</from>
       <to>Unión por session</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Secuencia condition</from>
+      <to>Conexión a condition_occurrence</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -571,6 +626,86 @@
     <hop>
       <from>Fecha retinografía not null</from>
       <to>Ordenar session_id sessions</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Obtener GRD</from>
+      <to>Filtro GRD nulos</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filtro GRD nulos</from>
+      <to>Ordenar session_id scans</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unión por session</from>
+      <to>Ordenar pacientes</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Ordenar pacientes</from>
+      <to>Búsqueda personid 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Constante type condition </from>
+      <to>Búsqueda condition DM</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Secuencia condition</from>
+      <to>Condición</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Búsqueda personid 2</from>
+      <to>Pacientes no nulos</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Pacientes no nulos</from>
+      <to>Filtrar GRD = 0 OR 6</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Número imágen en sesión </from>
+      <to>Ordenar por patientid 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Ordenar por patientid</from>
+      <to>Valores de interés</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Valores de interés</from>
+      <to>Unión por patientid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Ordenar por patientid 2</from>
+      <to>Valores de interés 3</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Valores de interés 3</from>
+      <to>Unión por patientid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Imágenes únicas</from>
+      <to>Búsqueda personid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Obtener ids 2</from>
+      <to>Mapeo lateralidad</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Mapeo lateralidad</from>
+      <to>radiology_dirpath </to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -589,133 +724,33 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Unión por paciente</from>
-      <to>Ordenar session_id 1</to>
+      <from>Paciente no nulo</from>
+      <to>Añadir constantes </to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Valores de interés</from>
-      <to>Ordenar por patientid</to>
+      <from>Filtrar GRD = 0 OR 6</from>
+      <to>Constantes GRD 0 y 6</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Número imágen en sesión </from>
-      <to>Valores de interés 3</to>
+      <from>Búsqueda condition DM</from>
+      <to>Concatenar campos</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Valores de interés 3</from>
-      <to>Ordenar por patientid 2</to>
+      <from>Filtrar GRD = 0 OR 6</from>
+      <to>Constante type condition </to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Ordenar por patientid</from>
-      <to>Unión por paciente</to>
+      <from>Concatenar campos</from>
+      <to>Mapeo diabetes-GRD</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Ordenar por patientid 2</from>
-      <to>Unión por paciente</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Añadir error id </from>
-      <to>Escribir log error </to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Búsqueda personid </from>
-      <to>Paciente no nulo </to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Imágenes únicas </from>
-      <to>Búsqueda personid </to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Paciente no nulo </from>
-      <to>Añadir error id </to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Secuencia id_image </from>
-      <to>Correspondencia imagenes</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Correspondencia imagenes</from>
-      <to>Conexión a radiology_image</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Obtener ids 2</from>
-      <to>radiology_dirpath </to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ordenar session_id 1</from>
-      <to>Imágenes únicas </to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filtro csPC nulos</from>
-      <to>Ordenar session_id scans</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Obtener csPC</from>
-      <to>Filtro csPC nulos</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Valores de interés 2</from>
-      <to>Obtener csPC</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Obtener ids 2</from>
-      <to>Valores de interés 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ordenar session_id scans</from>
-      <to>Unión por session</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Búsqueda personid 2</from>
-      <to>Pacientes no nulos</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ordenar pacientes</from>
-      <to>Búsqueda personid 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Pacientes no nulos</from>
-      <to>Filtrar csPC</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Unión por session</from>
-      <to>Ordenar pacientes</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Añadir constantes </from>
-      <to>Unión por image</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Observación</from>
-      <to>Ordenar imagefilepath</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ordenar imagefilepath</from>
-      <to>Unión por image</to>
+      <from>Constantes GRD 0 y 6</from>
+      <to>Secuencia observation</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
@@ -729,43 +764,58 @@
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filtrar csPC</from>
-      <to>Constantes suspected csPC</to>
+      <from>Mapeo diabetes-GRD</from>
+      <to>Condition concept a entero</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Obtener ids</from>
-      <to>Valores de interés</to>
+      <from>Condition concept a entero</from>
+      <to>Secuencia condition</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filtrar csPC</from>
-      <to>Constantes NO csPC</to>
+      <from>Añadir constantes </from>
+      <to>Unión por image</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Constantes NO csPC</from>
-      <to>Secuencia observation</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Constantes suspected csPC</from>
-      <to>Secuencia observation</to>
+      <from>Añadir constantes </from>
+      <to>Unión por image 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Unión por image</from>
+      <to>Unión por image </to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unión por image 2</from>
+      <to>Unión por image </to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unión por image </from>
       <to>Secuencia id_image </to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Paciente no nulo </from>
+      <from>Observación</from>
+      <to>Ordenar imagefilepath</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Condición</from>
       <to>Ordenar imagefilepath 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
+      <from>Ordenar imagefilepath</from>
+      <to>Unión por image</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
       <from>Ordenar imagefilepath 2</from>
-      <to>Añadir constantes </to>
+      <to>Unión por image 2</to>
       <enabled>Y</enabled>
     </hop>
   </order>
@@ -781,6 +831,30 @@
       <schema_name/>
     </partitioning>
     <fields>
+      <field>
+        <name>anatomic_site_string</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>eye</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>anatomic_site</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>4305326</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
       <field>
         <name>phase_total_no</name>
         <type>Integer</type>
@@ -803,13 +877,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1216</xloc>
-      <yloc>464</yloc>
+      <xloc>1520</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Añadir error id </name>
+    <name>Añadir error id</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -842,13 +916,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1424</xloc>
-      <yloc>352</yloc>
+      <xloc>1632</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Búsqueda personid </name>
+    <name>Búsqueda condition DM</name>
     <type>DBLookup</type>
     <description/>
     <distribute>N</distribute>
@@ -858,25 +932,25 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Tartaglia_PT8</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
     <lookup>
       <schema>public</schema>
-      <table>person</table>
+      <table>condition_occurrence</table>
       <orderby/>
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>patient_id</name>
-        <field>person_source_value</field>
+        <name>person_id</name>
+        <field>person_id</field>
         <condition>=</condition>
         <name2/>
       </key>
       <value>
-        <name>person_id</name>
-        <rename>person_id</rename>
+        <name>condition_concept_id</name>
+        <rename>condition_concept_id</rename>
         <default/>
         <type>Integer</type>
       </value>
@@ -890,13 +964,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1296</xloc>
-      <yloc>256</yloc>
+      <xloc>1232</xloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Búsqueda personid 2</name>
+    <name>Búsqueda personid</name>
     <type>DBLookup</type>
     <description/>
     <distribute>N</distribute>
@@ -906,7 +980,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Tartaglia_PT8</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -938,8 +1012,56 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>592</yloc>
+      <xloc>1520</xloc>
+      <yloc>128</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Búsqueda personid 2</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Tartaglia_PT8</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>public</schema>
+      <table>person</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>patient_id</name>
+        <field>person_source_value</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>person_id</name>
+        <rename>person_id</rename>
+        <default/>
+        <type>None</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>912</xloc>
+      <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -954,7 +1076,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Tartaglia_PT8</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -986,8 +1108,237 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>128</yloc>
+      <xloc>928</xloc>
+      <yloc>224</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Concatenar campos</name>
+    <type>ConcatFields</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <separator>-</separator>
+    <enclosure>"</enclosure>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>N</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding/>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name/>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>N</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>N</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>N</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
+    <fields>
+      <field>
+        <name>condition_concept_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>GRD</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+    </fields>
+    <ConcatFields>
+      <targetFieldName>diabetes-GRD</targetFieldName>
+      <targetFieldLength>0</targetFieldLength>
+      <removeSelectedFields>N</removeSelectedFields>
+    </ConcatFields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1376</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Condición</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>condition_occurrence_id</name>
+      </field>
+      <field>
+        <name>image_filepath</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1824</xloc>
+      <yloc>656</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Condition concept a entero</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>condconcept_id</name>
+        <rename>condconcept_id</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1664</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Conexión a condition_occurrence</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Tartaglia_PT8</connection>
+    <schema>public</schema>
+    <table>condition_occurrence</table>
+    <commit>1000</commit>
+    <truncate>N</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>person_id</column_name>
+        <stream_name>person_id</stream_name>
+      </field>
+      <field>
+        <column_name>condition_occurrence_id</column_name>
+        <stream_name>condition_occurrence_id</stream_name>
+      </field>
+      <field>
+        <column_name>condition_concept_id</column_name>
+        <stream_name>condconcept_id</stream_name>
+      </field>
+      <field>
+        <column_name>condition_start_date</column_name>
+        <stream_name>condition_start_date</stream_name>
+      </field>
+      <field>
+        <column_name>condition_type_concept_id</column_name>
+        <stream_name>type_condition</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>2000</xloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1002,7 +1353,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Tartaglia_PT8</connection>
     <schema>public</schema>
     <table>radiology_image</table>
     <commit>1000</commit>
@@ -1057,6 +1408,10 @@
         <stream_name>image_resolution_columns</stream_name>
       </field>
       <field>
+        <column_name>laterality_concept_id</column_name>
+        <stream_name>laterality_concept_id</stream_name>
+      </field>
+      <field>
         <column_name>image_slice_thickness</column_name>
         <stream_name>image_slice_thickness</stream_name>
       </field>
@@ -1073,6 +1428,10 @@
         <stream_name>phase_total_no</stream_name>
       </field>
       <field>
+        <column_name>condition_occurrence_id</column_name>
+        <stream_name>condition_occurrence_id</stream_name>
+      </field>
+      <field>
         <column_name>observation_id</column_name>
         <stream_name>observation_id</stream_name>
       </field>
@@ -1086,8 +1445,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1504</xloc>
-      <yloc>672</yloc>
+      <xloc>1664</xloc>
+      <yloc>528</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1102,11 +1461,11 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Tartaglia_PT8</connection>
     <schema>public</schema>
     <table>observation</table>
     <commit>1000</commit>
-    <truncate>Y</truncate>
+    <truncate>N</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>Y</specify_fields>
@@ -1142,7 +1501,7 @@
       </field>
       <field>
         <column_name>observation_source_value</column_name>
-        <stream_name>csPC</stream_name>
+        <stream_name>GRD</stream_name>
       </field>
       <field>
         <column_name>qualifier_concept_id</column_name>
@@ -1158,13 +1517,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1216</xloc>
-      <yloc>784</yloc>
+      <xloc>1344</xloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Constantes NO csPC</name>
+    <name>Constante type condition </name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -1176,37 +1535,13 @@
     </partitioning>
     <fields>
       <field>
-        <name>observation_type_concept_id</name>
+        <name>type_condition</name>
         <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
         <nullif>32817</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>observation_concept_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>4197714</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>qualifier_concept_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>35821450</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -1221,14 +1556,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
-      <yloc>784</yloc>
+      <xloc>1072</xloc>
+      <yloc>768</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Constantes suspected csPC</name>
-    <type>Constant</type>
+    <name>Constantes GRD 0 y 6</name>
+    <type>Formula</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1237,44 +1572,30 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <fields>
-      <field>
-        <name>observation_type_concept_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>32817</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>observation_concept_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>4197714</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>qualifier_concept_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>0</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
+    <formula>
+      <field_name>observation_concept_id</field_name>
+      <formula_string>IF([GRD]=0;36715429;IF([GRD]=6;4174977))</formula_string>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>observation_type_concept_id</field_name>
+      <formula_string>IF([GRD]=0;32817;IF([GRD]=6;32817))</formula_string>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
+    <formula>
+      <field_name>qualifier_concept_id</field_name>
+      <formula_string>IF([GRD]=6;4129922;0)</formula_string>
+      <value_type>Integer</value_type>
+      <value_length>-1</value_length>
+      <value_precision>-1</value_precision>
+      <replace_field/>
+    </formula>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -1284,8 +1605,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
-      <yloc>880</yloc>
+      <xloc>1072</xloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1430,7 +1751,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>MagneticFieldStrength</name>
+        <name>Modality</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1445,8 +1766,8 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>ReceiveCoilName</name>
-        <type>None</type>
+        <name>Columns</name>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1460,8 +1781,8 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>	PulseSequenceType</name>
-        <type>None</type>
+        <name>Rows</name>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1475,8 +1796,8 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>	ScanningSequence</name>
-        <type>None</type>
+        <name>PhotometricInterpretation</name>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1490,8 +1811,8 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>	SequenceVariant</name>
-        <type>None</type>
+        <name>Laterality</name>
+        <type>String</type>
         <format/>
         <currency/>
         <decimal/>
@@ -1505,142 +1826,7 @@
         <repeat>N</repeat>
       </field>
       <field>
-        <name>	ScanOptions</name>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>	SequenceName</name>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>	PulseSequenceDetails</name>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>	MRAcquisitionType</name>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>	EchoTime	</name>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>InversionTime</name>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>	SliceTiming</name>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>	SliceEncodingDirection</name>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>	FlipAngle</name>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
-      <field>
-        <name>csPC</name>
+        <name>note</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1689,8 +1875,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>224</yloc>
+      <xloc>272</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1804,21 +1990,6 @@
         <trim_type>none</trim_type>
         <repeat>N</repeat>
       </field>
-      <field>
-        <name>csPC</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <ifnull/>
-        <position>-1</position>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-        <repeat>N</repeat>
-      </field>
     </fields>
     <limit>0</limit>
     <error_ignored>N</error_ignored>
@@ -1900,8 +2071,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>224</yloc>
+      <xloc>1232</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1916,7 +2087,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Tartaglia_PT8</connection>
     <schema>public</schema>
     <table>correspondencia_radiology_image</table>
     <commit>1000</commit>
@@ -1952,8 +2123,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1504</xloc>
-      <yloc>560</yloc>
+      <xloc>1664</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1972,6 +2143,21 @@
     <delimiter>/</delimiter>
     <enclosure/>
     <fields>
+      <field>
+        <name>modalidad</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
       <field>
         <name>radiology_protocol_concept_id </name>
         <id/>
@@ -2012,13 +2198,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
+      <xloc>576</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Escribir log error </name>
+    <name>Escribir log error</name>
     <type>TextFileOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -2042,7 +2228,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>C:\Users\benaven\Desktop\Tartaglia\PT4\Logs error\Error_personid_radiologyimage.txt</name>
+      <name>C:\Users\benaven\Desktop\Tartaglia\PT8\Logs de error\Error_personid_RADIOLOGY_IMAGE.txt</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>txt</extention>
@@ -2093,8 +2279,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1552</xloc>
-      <yloc>352</yloc>
+      <xloc>1744</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2134,7 +2320,7 @@
     </GUI>
   </step>
   <step>
-    <name>Filtrar csPC</name>
+    <name>Filtrar GRD = 0 OR 6</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -2144,21 +2330,37 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Constantes NO csPC</send_true_to>
-    <send_false_to>Constantes suspected csPC</send_false_to>
+    <send_true_to>Constantes GRD 0 y 6</send_true_to>
+    <send_false_to>Constante type condition </send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
         <conditions>
           <condition>
             <negated>N</negated>
-            <leftvalue>csPC</leftvalue>
+            <leftvalue>GRD</leftvalue>
             <function>=</function>
             <rightvalue/>
             <value>
               <name>constant</name>
               <type>Integer</type>
               <text>0</text>
+              <length>-1</length>
+              <precision>0</precision>
+              <isnull>N</isnull>
+              <mask>####0;-####0</mask>
+            </value>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>OR</operator>
+            <leftvalue>GRD</leftvalue>
+            <function>=</function>
+            <rightvalue/>
+            <value>
+              <name>constant</name>
+              <type>Integer</type>
+              <text>6</text>
               <length>-1</length>
               <precision>0</precision>
               <isnull>N</isnull>
@@ -2177,8 +2379,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>784</yloc>
+      <xloc>912</xloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2204,7 +2406,7 @@
         <value>
           <name>constant</name>
           <type>String</type>
-          <text>.gz</text>
+          <text>.png</text>
           <length>-1</length>
           <precision>-1</precision>
           <isnull>N</isnull>
@@ -2221,8 +2423,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
-      <yloc>224</yloc>
+      <xloc>384</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2359,7 +2561,7 @@
     </GUI>
   </step>
   <step>
-    <name>Filtro csPC nulos</name>
+    <name>Filtro GRD nulos</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -2374,7 +2576,7 @@
     <compare>
       <condition>
         <negated>N</negated>
-        <leftvalue>csPC</leftvalue>
+        <leftvalue>GRD</leftvalue>
         <function>IS NOT NULL</function>
         <rightvalue/>
       </condition>
@@ -2388,8 +2590,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>304</yloc>
+      <xloc>480</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2480,13 +2682,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>304</xloc>
+      <xloc>480</xloc>
       <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Imágenes únicas </name>
+    <name>Imágenes únicas</name>
     <type>UniqueRowsByHashSet</type>
     <description/>
     <distribute>Y</distribute>
@@ -2513,8 +2715,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1296</xloc>
-      <yloc>176</yloc>
+      <xloc>1520</xloc>
+      <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2564,7 +2766,7 @@
       </field>
       <field>
         <name>person_orientation_concept</name>
-        <path>$..ImageOrientationPatientDICOM</path>
+        <path>$..PatientOrientation</path>
         <type>None</type>
         <format/>
         <currency/>
@@ -2757,6 +2959,19 @@
         <trim_type>none</trim_type>
         <repeat>N</repeat>
       </field>
+      <field>
+        <name>laterality</name>
+        <path>$..Laterality</path>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
     </fields>
     <limit>0</limit>
     <IsInFields>Y</IsInFields>
@@ -2781,6 +2996,134 @@
     <GUI>
       <xloc>304</xloc>
       <yloc>32</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Mapeo diabetes-GRD</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <field_to_use>diabetes-GRD</field_to_use>
+    <target_field>condconcept_id</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>201254-1</source_value>
+        <target_value>4227210</target_value>
+      </field>
+      <field>
+        <source_value>201254-2</source_value>
+        <target_value>37016179</target_value>
+      </field>
+      <field>
+        <source_value>201254-3</source_value>
+        <target_value>37016180</target_value>
+      </field>
+      <field>
+        <source_value>201254-4</source_value>
+        <target_value>376114</target_value>
+      </field>
+      <field>
+        <source_value>201254-5</source_value>
+        <target_value>45763584</target_value>
+      </field>
+      <field>
+        <source_value>201826-1</source_value>
+        <target_value>4226121</target_value>
+      </field>
+      <field>
+        <source_value>201826-2</source_value>
+        <target_value>45757435</target_value>
+      </field>
+      <field>
+        <source_value>201826-3</source_value>
+        <target_value>45770881</target_value>
+      </field>
+      <field>
+        <source_value>201826-4</source_value>
+        <target_value>376114</target_value>
+      </field>
+      <field>
+        <source_value>201826-5</source_value>
+        <target_value>43530685</target_value>
+      </field>
+      <field>
+        <source_value>201820-1</source_value>
+        <target_value>4174977</target_value>
+      </field>
+      <field>
+        <source_value>201820-2</source_value>
+        <target_value>378743</target_value>
+      </field>
+      <field>
+        <source_value>201820-3</source_value>
+        <target_value>377552</target_value>
+      </field>
+      <field>
+        <source_value>201820-4</source_value>
+        <target_value>376114</target_value>
+      </field>
+      <field>
+        <source_value>201820-5</source_value>
+        <target_value>380096</target_value>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1504</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Mapeo lateralidad</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <field_to_use>Laterality</field_to_use>
+    <target_field>laterality_concept_id</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>L</source_value>
+        <target_value>4242269</target_value>
+      </field>
+      <field>
+        <source_value>R</source_value>
+        <target_value>4210179</target_value>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>800</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2812,8 +3155,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>128</yloc>
+      <xloc>1232</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2846,13 +3189,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>688</yloc>
+      <xloc>1200</xloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Obtener csPC</name>
+    <name>Obtener GRD</name>
     <type>StringCut</type>
     <description/>
     <distribute>Y</distribute>
@@ -2864,8 +3207,8 @@
     </partitioning>
     <fields>
       <field>
-        <in_stream_name>csPC</in_stream_name>
-        <out_stream_name/>
+        <in_stream_name>note</in_stream_name>
+        <out_stream_name>GRD</out_stream_name>
         <cut_from>0</cut_from>
         <cut_to>1</cut_to>
       </field>
@@ -2879,8 +3222,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>544</xloc>
-      <yloc>304</yloc>
+      <xloc>480</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3014,8 +3357,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>224</yloc>
+      <xloc>672</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3056,8 +3399,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1216</xloc>
-      <yloc>688</yloc>
+      <xloc>1344</xloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3098,8 +3441,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1296</xloc>
-      <yloc>464</yloc>
+      <xloc>1824</xloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3140,8 +3483,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>496</yloc>
+      <xloc>912</xloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3182,7 +3525,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>896</xloc>
+      <xloc>592</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3191,7 +3534,7 @@
     <name>Ordenar por patientid 2</name>
     <type>SortRows</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -3224,8 +3567,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>176</yloc>
+      <xloc>1392</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3274,50 +3617,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Ordenar session_id 1</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>session_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1296</xloc>
-      <yloc>32</yloc>
+      <xloc>1072</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3358,8 +3659,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>384</yloc>
+      <xloc>640</xloc>
+      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3406,7 +3707,7 @@
     </GUI>
   </step>
   <step>
-    <name>Paciente no nulo </name>
+    <name>Paciente no nulo</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -3416,7 +3717,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Ordenar imagefilepath 2</send_true_to>
+    <send_true_to>Añadir constantes </send_true_to>
     <send_false_to>Añadir error id</send_false_to>
     <compare>
       <condition>
@@ -3441,8 +3742,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1296</xloc>
-      <yloc>352</yloc>
+      <xloc>1520</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3457,7 +3758,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Filtrar csPC</send_true_to>
+    <send_true_to>Filtrar GRD = 0 OR 6</send_true_to>
     <send_false_to/>
     <compare>
       <condition>
@@ -3476,8 +3777,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>688</yloc>
+      <xloc>912</xloc>
+      <yloc>560</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3517,8 +3818,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>656</xloc>
-      <yloc>128</yloc>
+      <xloc>1072</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3547,7 +3848,7 @@
     <dynamic_include_subfolders>N</dynamic_include_subfolders>
     <limit>0</limit>
     <file>
-      <name>C:\Users\benaven\Desktop\Tartaglia\PT4\Prueba piloto variables + img\ETLs completas\p0042021-prostata-fisabio</name>
+      <name>C:\Users\benaven\Desktop\Tartaglia\PT8\p0082023-sample-PT8-LaFe</name>
       <filemask/>
       <exclude_filemask/>
       <file_required>N</file_required>
@@ -3568,6 +3869,41 @@
     </GUI>
   </step>
   <step>
+    <name>Secuencia condition</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>condition_occurrence_id</valuename>
+    <use_database>Y</use_database>
+    <connection>Tartaglia_PT8</connection>
+    <schema>public</schema>
+    <seqname>condition_occurrence_id</seqname>
+    <use_counter>N</use_counter>
+    <counter_name/>
+    <start_at>1</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1824</xloc>
+      <yloc>768</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
     <name>Secuencia id_image </name>
     <type>Sequence</type>
     <description/>
@@ -3580,7 +3916,7 @@
     </partitioning>
     <valuename>radiology_image_id</valuename>
     <use_database>Y</use_database>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Tartaglia_PT8</connection>
     <schema>public</schema>
     <seqname>radiology_image_id</seqname>
     <use_counter>N</use_counter>
@@ -3597,8 +3933,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1360</xloc>
-      <yloc>560</yloc>
+      <xloc>1520</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3615,7 +3951,7 @@
     </partitioning>
     <valuename>observation_id</valuename>
     <use_database>Y</use_database>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Tartaglia_PT8</connection>
     <schema>public</schema>
     <seqname>observation_id</seqname>
     <use_counter>N</use_counter>
@@ -3632,8 +3968,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1072</xloc>
-      <yloc>784</yloc>
+      <xloc>1200</xloc>
+      <yloc>656</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3666,13 +4002,81 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1216</xloc>
-      <yloc>560</yloc>
+      <xloc>1440</xloc>
+      <yloc>416</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Unión por paciente</name>
+    <name>Unión por image </name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>FULL OUTER</join_type>
+    <step1>Unión por image</step1>
+    <step2>Unión por image 2</step2>
+    <keys_1>
+      <key>image_filepath</key>
+    </keys_1>
+    <keys_2>
+      <key>image_filepath</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1520</xloc>
+      <yloc>528</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unión por image 2</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>LEFT OUTER</join_type>
+    <step1>Añadir constantes </step1>
+    <step2>Ordenar imagefilepath 2</step2>
+    <keys_1>
+      <key>image_filepath</key>
+    </keys_1>
+    <keys_2>
+      <key>image_filepath</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1584</xloc>
+      <yloc>416</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unión por patientid</name>
     <type>MergeJoin</type>
     <description/>
     <distribute>Y</distribute>
@@ -3683,8 +4087,8 @@
       <schema_name/>
     </partitioning>
     <join_type>INNER</join_type>
-    <step1>Ordenar por patientid</step1>
-    <step2>Ordenar por patientid 2</step2>
+    <step1>Valores de interés</step1>
+    <step2>Valores de interés 3</step2>
     <keys_1>
       <key>patientid</key>
     </keys_1>
@@ -3700,7 +4104,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1152</xloc>
+      <xloc>1392</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3717,8 +4121,8 @@
       <schema_name/>
     </partitioning>
     <join_type>INNER</join_type>
-    <step1>Ordenar session_id scans</step1>
-    <step2>Ordenar session_id sessions</step2>
+    <step1>Ordenar session_id sessions</step1>
+    <step2>Ordenar session_id scans</step2>
     <keys_1>
       <key>session_id</key>
     </keys_1>
@@ -3735,7 +4139,7 @@
     </remotesteps>
     <GUI>
       <xloc>800</xloc>
-      <yloc>416</yloc>
+      <yloc>368</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3789,7 +4193,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>736</xloc>
       <yloc>32</yloc>
       <draw>Y</draw>
     </GUI>
@@ -3813,7 +4217,7 @@
         <name>session_id</name>
       </field>
       <field>
-        <name>csPC</name>
+        <name>note</name>
       </field>
       <field>
         <name>image_filepath</name>
@@ -3829,8 +4233,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>304</yloc>
+      <xloc>672</xloc>
+      <yloc>224</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3856,6 +4260,9 @@
         <name>image_no</name>
       </field>
       <field>
+        <name>laterality_concept_id</name>
+      </field>
+      <field>
         <name>session_id</name>
       </field>
       <field>
@@ -3875,8 +4282,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
-      <yloc>176</yloc>
+      <xloc>1392</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -3947,6 +4354,18 @@
         <precision>-1</precision>
       </field>
       <field>
+        <name>modalidad</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
         <name>radiology_protocol_concept_id </name>
         <type>String</type>
         <format/>
@@ -3973,8 +4392,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>528</xloc>
-      <yloc>224</yloc>
+      <xloc>928</xloc>
+      <yloc>128</yloc>
       <draw>Y</draw>
     </GUI>
   </step>

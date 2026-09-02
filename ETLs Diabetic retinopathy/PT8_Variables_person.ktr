@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>PT4_Person_Variables</name>
+    <name>PT8_Variables_person</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,20 +428,20 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2023/04/25 11:10:37.603</created_date>
+    <created_date>2023/03/28 11:52:37.248</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/04/25 11:10:37.603</modified_date>
+    <modified_date>2023/03/28 11:52:37.248</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>Tartaglia_PT4</name>
+    <name>Tartaglia_PT8</name>
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>Tartaglia_PT4</database>
+    <database>Tartaglia_PT8</database>
     <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
@@ -489,74 +489,84 @@
   </connection>
   <order>
     <hop>
-      <from>Campos de interés </from>
-      <to>Búsqueda identificador en bdd</to>
+      <from>Constantes race &amp; ethnicity</from>
+      <to>Género a entero</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Fichero de entrada </from>
-      <to>Ordenar filas</to>
+      <from>Filtro nacimientos y sexos nulos</from>
+      <to>Añadir tipoError</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Búsqueda paciente en bdd</from>
-      <to>Filtrar pacientes existentes</to>
+      <from>Filtro nacimientos y sexos nulos</from>
+      <to>Separar año, mes, dia</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Búsqueda identificador en bdd</from>
-      <to>Ordenar por id paciente</to>
+      <from>Mapeo género</from>
+      <to>Constantes race &amp; ethnicity</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filtrar pacientes existentes</from>
-      <to>Añadir constantes </to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Añadir constantes </from>
-      <to>Campos de interés </to>
+      <from>Añadir tipoError</from>
+      <to>Salida Fichero de Texto</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Separar año, mes, dia</from>
-      <to>Salida tabla Person</to>
+      <to>Mapeo género</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filtro fecha de nacimiento nula </from>
-      <to>Añadir error nacimiento </to>
+      <from>Búsqueda en base de datos</from>
+      <to>Filtrar pacientes existentes</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Género a entero</from>
+      <to>Salida Tabla</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
       <from>Ordenar filas</from>
-      <to>Pacientes únicos</to>
+      <to>Agrupar por</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Pacientes únicos</from>
-      <to>Búsqueda paciente en bdd</to>
+      <from>Agrupar por</from>
+      <to>Búsqueda en base de datos</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Añadir error nacimiento </from>
-      <to>Escribir log error </to>
+      <from>Búsqueda en base de datos 2</from>
+      <to>Filtrar pacientes existentes 2 </to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Ordenar por id paciente</from>
-      <to>Filtro fecha de nacimiento nula </to>
+      <from>Filtrar pacientes existentes</from>
+      <to>Búsqueda en base de datos 2</to>
       <enabled>Y</enabled>
     </hop>
     <hop>
-      <from>Filtro fecha de nacimiento nula </from>
-      <to>Separar año, mes, dia</to>
+      <from>Variables PT8</from>
+      <to>Campos de interés</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Campos de interés</from>
+      <to>Ordenar filas</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filtrar pacientes existentes 2 </from>
+      <to>Filtro nacimientos y sexos nulos</to>
       <enabled>Y</enabled>
     </hop>
   </order>
   <step>
-    <name>Añadir constantes </name>
-    <type>Constant</type>
+    <name>Agrupar por</name>
+    <type>GroupBy</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -565,44 +575,27 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
+    <all_rows>N</all_rows>
+    <ignore_aggregate>N</ignore_aggregate>
+    <field_ignore/>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>grp</prefix>
+    <add_linenr>N</add_linenr>
+    <linenr_fieldname/>
+    <give_back_row>N</give_back_row>
+    <group>
+      <field>
+        <name>Id_Paciente</name>
+      </field>
+      <field>
+        <name>Sexo</name>
+      </field>
+      <field>
+        <name>F_Nacimiento</name>
+      </field>
+    </group>
     <fields>
-      <field>
-        <name>gender_concept_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>8507</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>race_concept_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>0</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-      <field>
-        <name>ethnicity_concept_id</name>
-        <type>Integer</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif>0</nullif>
-        <length>-1</length>
-        <precision>-1</precision>
-        <set_empty_string>N</set_empty_string>
-      </field>
-    </fields>
+      </fields>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -612,13 +605,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
-      <yloc>112</yloc>
+      <xloc>336</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Añadir error nacimiento </name>
+    <name>Añadir tipoError</name>
     <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
@@ -636,7 +629,7 @@
         <currency/>
         <decimal/>
         <group/>
-        <nullif>Error en fecha de nacimiento</nullif>
+        <nullif>Error en edad</nullif>
         <length>-1</length>
         <precision>-1</precision>
         <set_empty_string>N</set_empty_string>
@@ -651,13 +644,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1264</xloc>
-      <yloc>208</yloc>
+      <xloc>1104</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Búsqueda identificador en bdd</name>
+    <name>Búsqueda en base de datos</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -667,7 +660,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Tartaglia_PT8</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -678,7 +671,7 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>participant_id</name>
+        <name>Id_Paciente</name>
         <field>source_id</field>
         <condition>=</condition>
         <name2/>
@@ -699,13 +692,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>944</xloc>
-      <yloc>112</yloc>
+      <xloc>448</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Búsqueda paciente en bdd</name>
+    <name>Búsqueda en base de datos 2</name>
     <type>DBLookup</type>
     <description/>
     <distribute>Y</distribute>
@@ -715,7 +708,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Tartaglia_PT8</connection>
     <cache>N</cache>
     <cache_load_all>N</cache_load_all>
     <cache_size>0</cache_size>
@@ -726,7 +719,7 @@
       <fail_on_multiple>N</fail_on_multiple>
       <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>participant_id</name>
+        <name>Id_Paciente</name>
         <field>person_source_value</field>
         <condition>=</condition>
         <name2/>
@@ -735,7 +728,7 @@
         <name>person_id</name>
         <rename>idperson</rename>
         <default/>
-        <type>Integer</type>
+        <type>None</type>
       </value>
     </lookup>
     <attributes/>
@@ -747,13 +740,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>400</xloc>
-      <yloc>112</yloc>
+      <xloc>768</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Campos de interés </name>
+    <name>Campos de interés</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -765,22 +758,13 @@
     </partitioning>
     <fields>
       <field>
-        <name>participant_id</name>
+        <name>Id_Paciente</name>
       </field>
       <field>
-        <name>F_nacimiento</name>
+        <name>Sexo</name>
       </field>
       <field>
-        <name>idperson</name>
-      </field>
-      <field>
-        <name>gender_concept_id</name>
-      </field>
-      <field>
-        <name>race_concept_id</name>
-      </field>
-      <field>
-        <name>ethnicity_concept_id</name>
+        <name>F_Nacimiento</name>
       </field>
       <select_unspecified>N</select_unspecified>
     </fields>
@@ -793,14 +777,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>800</xloc>
-      <yloc>112</yloc>
+      <xloc>144</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Escribir log error </name>
-    <type>TextFileOutput</type>
+    <name>Constantes race &amp; ethnicity</name>
+    <type>Constant</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -809,72 +793,30 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <separator>;</separator>
-    <enclosure/>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>Y</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding>UTF-8</encoding>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name>C:\Users\benaven\Desktop\Tartaglia\PT4\Logs error\Error_person.txt</name>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>Y</fast_dump>
-      <splitevery/>
-    </file>
     <fields>
       <field>
-        <name>tipoError</name>
-        <type>String</type>
+        <name>race</name>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
+        <nullif>0</nullif>
         <length>-1</length>
         <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
       </field>
       <field>
-        <name>participant_id</name>
-        <type>None</type>
+        <name>ethnicity</name>
+        <type>Integer</type>
         <format/>
         <currency/>
         <decimal/>
         <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
+        <nullif>0</nullif>
         <length>-1</length>
         <precision>-1</precision>
-      </field>
-      <field>
-        <name>F_Nacimiento</name>
-        <type>None</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
       </field>
     </fields>
     <attributes/>
@@ -886,214 +828,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1264</xloc>
-      <yloc>304</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Fichero de entrada </name>
-    <type>CsvInput</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <filename>C:\Users\benaven\Desktop\Tartaglia\PT4\Prueba piloto variables + img\ETLs completas\variablesPT4_fisabio_with_sub.csv</filename>
-    <filename_field/>
-    <rownum_field/>
-    <include_filename>N</include_filename>
-    <separator>,</separator>
-    <enclosure>"</enclosure>
-    <header>Y</header>
-    <buffer_size>50000</buffer_size>
-    <lazy_conversion>Y</lazy_conversion>
-    <add_filename_result>N</add_filename_result>
-    <parallel>N</parallel>
-    <newline_possible>N</newline_possible>
-    <format>mixed</format>
-    <encoding/>
-    <fields>
-      <field>
-        <name>Id_Paciente</name>
-        <type>String</type>
-        <format/>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>13</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>F_nacimiento</name>
-        <type>Date</type>
-        <format>yyyy-MM-dd</format>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>F_RM</name>
-        <type>Date</type>
-        <format>yyyy-MM-dd</format>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>PIR</name>
-        <type>Number</type>
-        <format>#.#</format>
-        <currency>€</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>VP</name>
-        <type>Number</type>
-        <format>#.#</format>
-        <currency>€</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>F_TACTO_RECTAL</name>
-        <type>Boolean</type>
-        <format/>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>TR</name>
-        <type>Number</type>
-        <format>#.#</format>
-        <currency>€</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>TB</name>
-        <type>Number</type>
-        <format>#.#</format>
-        <currency>€</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>ED</name>
-        <type>Number</type>
-        <format>#.#</format>
-        <currency>€</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>AF</name>
-        <type>Boolean</type>
-        <format/>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>PSA</name>
-        <type>Number</type>
-        <format>#.#</format>
-        <currency>€</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>F_PSA</name>
-        <type>Date</type>
-        <format>dd/MM/yyyy</format>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>csPC</name>
-        <type>Number</type>
-        <format>#.#</format>
-        <currency>€</currency>
-        <decimal>.</decimal>
-        <group>,</group>
-        <length>15</length>
-        <precision>0</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>F_csPC</name>
-        <type>Date</type>
-        <format>dd/MM/yyyy</format>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>-1</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-      <field>
-        <name>participant_id</name>
-        <type>String</type>
-        <format/>
-        <currency>€</currency>
-        <decimal>,</decimal>
-        <group>.</group>
-        <length>10</length>
-        <precision>-1</precision>
-        <trim_type>none</trim_type>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>48</xloc>
-      <yloc>112</yloc>
+      <xloc>1376</xloc>
+      <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1108,7 +844,42 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Añadir constantes </send_true_to>
+    <send_true_to>Búsqueda en base de datos 2</send_true_to>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>omop_id</leftvalue>
+        <function>IS NOT NULL</function>
+        <rightvalue/>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>608</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filtrar pacientes existentes 2 </name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Filtro nacimientos y sexos nulos</send_true_to>
     <send_false_to/>
     <compare>
       <condition>
@@ -1127,13 +898,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>560</xloc>
-      <yloc>112</yloc>
+      <xloc>944</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Filtro fecha de nacimiento nula </name>
+    <name>Filtro nacimientos y sexos nulos</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1144,13 +915,25 @@
       <schema_name/>
     </partitioning>
     <send_true_to>Separar año, mes, dia</send_true_to>
-    <send_false_to>Añadir error nacimiento </send_false_to>
+    <send_false_to>Añadir tipoError</send_false_to>
     <compare>
       <condition>
         <negated>N</negated>
-        <leftvalue>F_nacimiento</leftvalue>
-        <function>IS NOT NULL</function>
-        <rightvalue/>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>F_Nacimiento</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue/>
+          </condition>
+          <condition>
+            <negated>N</negated>
+            <operator>AND</operator>
+            <leftvalue>Sexo</leftvalue>
+            <function>IS NOT NULL</function>
+            <rightvalue/>
+          </condition>
+        </conditions>
       </condition>
     </compare>
     <attributes/>
@@ -1162,8 +945,95 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1264</xloc>
-      <yloc>112</yloc>
+      <xloc>1104</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Género a entero</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>sexoOMOP</name>
+        <rename>sexoOMOP</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1376</xloc>
+      <yloc>368</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Mapeo género</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <field_to_use>Sexo</field_to_use>
+    <target_field>sexoOMOP</target_field>
+    <non_match_default>0</non_match_default>
+    <fields>
+      <field>
+        <source_value>1</source_value>
+        <target_value>8532</target_value>
+      </field>
+      <field>
+        <source_value>0</source_value>
+        <target_value>8507</target_value>
+      </field>
+      <field>
+        <source_value>None</source_value>
+        <target_value>0</target_value>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1376</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1187,7 +1057,7 @@
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>participant_id</name>
+        <name>Id_Paciente</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1204,14 +1074,14 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>144</xloc>
-      <yloc>112</yloc>
+      <xloc>240</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Ordenar por id paciente</name>
-    <type>SortRows</type>
+    <name>Salida Fichero de Texto</name>
+    <type>TextFileOutput</type>
     <description/>
     <distribute>Y</distribute>
     <custom_distribution/>
@@ -1220,21 +1090,72 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
+    <separator>;</separator>
+    <enclosure/>
+    <enclosure_forced>N</enclosure_forced>
+    <enclosure_fix_disabled>N</enclosure_fix_disabled>
+    <header>Y</header>
+    <footer>N</footer>
+    <format>DOS</format>
+    <compression>None</compression>
+    <encoding>UTF-8</encoding>
+    <endedLine/>
+    <fileNameInField>N</fileNameInField>
+    <fileNameField/>
+    <create_parent_folder>Y</create_parent_folder>
+    <file>
+      <name>C:\Users\benaven\Desktop\Tartaglia\PT8\Logs de error\Error_person.txt</name>
+      <servlet_output>N</servlet_output>
+      <do_not_open_new_file_init>Y</do_not_open_new_file_init>
+      <extention>txt</extention>
+      <append>N</append>
+      <split>N</split>
+      <haspartno>N</haspartno>
+      <add_date>Y</add_date>
+      <add_time>N</add_time>
+      <SpecifyFormat>N</SpecifyFormat>
+      <date_time_format/>
+      <add_to_result_filenames>Y</add_to_result_filenames>
+      <pad>N</pad>
+      <fast_dump>Y</fast_dump>
+      <splitevery>0</splitevery>
+    </file>
     <fields>
       <field>
-        <name>participant_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
+        <name>Id_Paciente</name>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>F_Nacimiento</name>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
+      </field>
+      <field>
+        <name>Sexo</name>
+        <type>None</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <trim_type>none</trim_type>
+        <length>-1</length>
+        <precision>-1</precision>
       </field>
     </fields>
     <attributes/>
@@ -1246,46 +1167,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1104</xloc>
-      <yloc>112</yloc>
+      <xloc>1248</xloc>
+      <yloc>80</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Pacientes únicos</name>
-    <type>UniqueRowsByHashSet</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <store_values>N</store_values>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description/>
-    <fields>
-      <field>
-        <name>participant_id</name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>256</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Salida tabla Person</name>
+    <name>Salida Tabla</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1295,7 +1183,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Tartaglia_PT8</connection>
     <schema>public</schema>
     <table>person</table>
     <commit>1000</commit>
@@ -1315,7 +1203,7 @@
     <fields>
       <field>
         <column_name>gender_concept_id</column_name>
-        <stream_name>gender_concept_id</stream_name>
+        <stream_name>sexoOMOP</stream_name>
       </field>
       <field>
         <column_name>year_of_birth</column_name>
@@ -1331,15 +1219,15 @@
       </field>
       <field>
         <column_name>race_concept_id</column_name>
-        <stream_name>race_concept_id</stream_name>
+        <stream_name>race</stream_name>
       </field>
       <field>
         <column_name>ethnicity_concept_id</column_name>
-        <stream_name>ethnicity_concept_id</stream_name>
+        <stream_name>ethnicity</stream_name>
       </field>
       <field>
         <column_name>person_source_value</column_name>
-        <stream_name>participant_id</stream_name>
+        <stream_name>Id_Paciente</stream_name>
       </field>
       <field>
         <column_name>person_id</column_name>
@@ -1355,8 +1243,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1568</xloc>
-      <yloc>112</yloc>
+      <xloc>1376</xloc>
+      <yloc>448</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1426,8 +1314,357 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1440</xloc>
-      <yloc>112</yloc>
+      <xloc>1248</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Variables PT8</name>
+    <type>CsvInput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <filename>C:\Users\benaven\Desktop\Tartaglia\PT8\Variables\Pacientes_retinos.csv</filename>
+    <filename_field/>
+    <rownum_field/>
+    <include_filename>N</include_filename>
+    <separator>;</separator>
+    <enclosure>"</enclosure>
+    <header>Y</header>
+    <buffer_size>50000</buffer_size>
+    <lazy_conversion>Y</lazy_conversion>
+    <add_filename_result>N</add_filename_result>
+    <parallel>N</parallel>
+    <newline_possible>N</newline_possible>
+    <format>mixed</format>
+    <encoding/>
+    <fields>
+      <field>
+        <name>ID_imagen</name>
+        <type>String</type>
+        <format/>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>33</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Id_Paciente</name>
+        <type>String</type>
+        <format/>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>10</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>F_Retinografia</name>
+        <type>Date</type>
+        <format>dd/MM/yyyy</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Cod_diagnostico</name>
+        <type>String</type>
+        <format/>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>6</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>descripcion_cod_DM</name>
+        <type>String</type>
+        <format/>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>81</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>ter_diabetes</name>
+        <type>String</type>
+        <format/>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>5</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>DM_tipo</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Sexo</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>F_Nacimiento</name>
+        <type>Date</type>
+        <format>dd/MM/yyyy</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>F_1_Diag</name>
+        <type>Date</type>
+        <format>dd/MM/yyyy</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>HbA1c</name>
+        <type>Number</type>
+        <format>#.#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>4</length>
+        <precision>1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>F_HbA1c</name>
+        <type>Date</type>
+        <format>dd/MM/yyyy</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>FG</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>F_FG</name>
+        <type>Date</type>
+        <format>dd/MM/yyyy</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Alb/cr</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>F_Alb/cr</name>
+        <type>Date</type>
+        <format>dd/MM/yyyy</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>DM_TTO_ADO</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>F_Tto_ADO</name>
+        <type>Date</type>
+        <format>dd/MM/yyyy</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>DM_TTO_Insulinas</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>F_Tto_Insulinas</name>
+        <type>Date</type>
+        <format>dd/MM/yyyy</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>DM_TTO_Dietas</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>F_Tto_Dietas</name>
+        <type>Date</type>
+        <format>dd/MM/yyyy</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>TAD</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>TAS</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Hipertension</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>F_RegistroTA</name>
+        <type>Date</type>
+        <format>dd/MM/yyyy</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>GRD</name>
+        <type>Integer</type>
+        <format>#</format>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>15</length>
+        <precision>0</precision>
+        <trim_type>none</trim_type>
+      </field>
+      <field>
+        <name>Lateralidad</name>
+        <type>String</type>
+        <format/>
+        <currency>€</currency>
+        <decimal>,</decimal>
+        <group>.</group>
+        <length>1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>32</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
