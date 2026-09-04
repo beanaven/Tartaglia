@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <transformation>
   <info>
-    <name>PT4_radiology_occurrence</name>
+    <name>image_occurrence</name>
     <description/>
     <extended_description/>
     <trans_version/>
@@ -428,20 +428,20 @@
     <clusterschemas>
     </clusterschemas>
     <created_user>-</created_user>
-    <created_date>2023/06/14 12:58:17.518</created_date>
+    <created_date>2024/08/12 12:15:28.404</created_date>
     <modified_user>-</modified_user>
-    <modified_date>2023/06/14 12:58:17.518</modified_date>
+    <modified_date>2024/08/12 12:15:28.404</modified_date>
     <key_for_session_key>H4sIAAAAAAAAAAMAAAAAAAAAAAA=</key_for_session_key>
     <is_key_private>N</is_key_private>
   </info>
   <notepads>
   </notepads>
   <connection>
-    <name>Tartaglia_PT4</name>
+    <name>Paper_PT4</name>
     <server>localhost</server>
     <type>POSTGRESQL</type>
     <access>Native</access>
-    <database>Tartaglia_PT4</database>
+    <database>Paper_PT4</database>
     <port>5432</port>
     <username>postgres</username>
     <password>Encrypted 2be98afc86aa7f2e4bb18bd63c99dbdde</password>
@@ -489,196 +489,6 @@
   </connection>
   <order>
     <hop>
-      <from>Contenido participants</from>
-      <to>Eliminar comillas y corchetes</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Búsqueda personid</from>
-      <to>Paciente no nulo</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Contenido sessions</from>
-      <to>Formato date 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Búsqueda sesion</from>
-      <to>Ordenar idsession</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Correspondencia radiologias</from>
-      <to>conexion bdd </to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Eliminar comillas y corchetes</from>
-      <to>Mapeo de valores</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filtrar participants.tsv</from>
-      <to>Contenido participants</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filtrar sessions.tsv</from>
-      <to>Contenido sessions</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Formato anatomic</from>
-      <to>Ordenar participant_id</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Formato date 2</from>
-      <to>Ordenar session_id sessions</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Mapeo de valores</from>
-      <to>Formato anatomic</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ordenar dirpath</from>
-      <to>Conteo imágenes </to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ordenar idsession</from>
-      <to>Secuencia id_radiology_occurrence</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ordenar participant_id</from>
-      <to>Unión por paciente</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ordenar patient_id</from>
-      <to>Unión por paciente</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ordenar session_id 1</from>
-      <to>Unión por radiology_dirpath</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ordenar session_id 2</from>
-      <to>Unión por radiology_dirpath</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ordenar session_id scans</from>
-      <to>Unión por session</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Ordenar session_id sessions</from>
-      <to>Unión por session</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Secuencia id_radiology_occurrence</from>
-      <to>Correspondencia radiologias</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Unión por paciente</from>
-      <to>Ordenar session_id 1</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Unión por session</from>
-      <to>Ordenar session_id 2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Paciente no nulo</from>
-      <to>Búsqueda sesion</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>radiology_dirpath</from>
-      <to>Ordenar dirpath</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Paciente no nulo</from>
-      <to>Búsqueda sesion</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Partir campos  2</from>
-      <to>radiology_dirpath</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filtrar imágenes</from>
-      <to>Partir campos </to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Partir campos </from>
-      <to>Partir campos  2</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Conteo imágenes </from>
-      <to>Radiologias unicas</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Radiologias unicas</from>
-      <to>Ordenar patient_id</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Radiologias unicas</from>
-      <to>Ordenar session_id scans</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Unión por radiology_dirpath</from>
-      <to>Valores de interés</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Filtrar scans.tsv</from>
-      <to>Contenido scans </to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Contenido scans </from>
-      <to>Filtrar imágenes</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Valores de interés</from>
-      <to>Búsqueda personid</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Rutas </from>
-      <to>Filtrar participants.tsv</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Rutas </from>
-      <to>Filtrar scans.tsv</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
-      <from>Rutas </from>
-      <to>Filtrar sessions.tsv</to>
-      <enabled>Y</enabled>
-    </hop>
-    <hop>
       <from>Añadir tipoError</from>
       <to>Escribir log error</to>
       <enabled>Y</enabled>
@@ -688,7 +498,335 @@
       <to>Añadir tipoError</to>
       <enabled>Y</enabled>
     </hop>
+    <hop>
+      <from>Búsqueda personid</from>
+      <to>Paciente no nulo</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Contenido participants</from>
+      <to>Eliminar comillas y corchetes</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Contenido scans </from>
+      <to>Filtrar imágenes</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Correspondencia ocurrencias</from>
+      <to>conexion image_occurrence</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filtrar imágenes</from>
+      <to>Partir campos </to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filtrar participants.tsv</from>
+      <to>Contenido participants</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filtrar scans.tsv</from>
+      <to>Contenido scans </to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filtrar sessions</from>
+      <to>Contenido sessions</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Formato numerico</from>
+      <to>Ordenar participant_id y project_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Ordenar participant_id y project_id</from>
+      <to>Unión por paciente y project</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Ordenar image_filepath</from>
+      <to>Unión por image_filepath</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Ordenar image_filepath 2</from>
+      <to>Unión por image_filepath</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Rutas General</from>
+      <to>Filter rows</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Secuencia image_occurrence_id</from>
+      <to>Correspondencia ocurrencias</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unión por paciente y project</from>
+      <to>Ordenar image_filepath</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unión por image_filepath</from>
+      <to>Valores de interés</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Valores de interés</from>
+      <to>Búsqueda personid</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Eliminar comillas y corchetes</from>
+      <to>Mapeo de valores modalidad</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Mapeo de valores modalidad</from>
+      <to>Mapeo de valores lugar anatomico</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Correspondencia visitas</from>
+      <to>Conexion visit_occurrence</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Paciente no nulo</from>
+      <to>Ordenar idsession</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Ordenar idsession</from>
+      <to>Añadir constantes</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Formato date</from>
+      <to>Ordenar ids</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Mapeo de valores lugar anatomico</from>
+      <to>Formato numerico</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Contenido sessions</from>
+      <to>Obtener ids</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filtrar imágenes 2</from>
+      <to>Obtener path </to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Obtener path </from>
+      <to>Obtener ids 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Obtener ids 2</from>
+      <to>Ordenar ids 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Obtener ids</from>
+      <to>Formato date</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Ordenar ids</from>
+      <to>Unión por 3 ids</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Ordenar ids 2</from>
+      <to>Unión por 3 ids</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unión por 3 ids</from>
+      <to>Unión por paciente y project</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>Visualizar resultados</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Visualizar resultados</from>
+      <to>Filtrar sessions</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Visualizar resultados</from>
+      <to>Filtrar imágenes 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Visualizar resultados</from>
+      <to>Filtrar scans.tsv</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Añadir constantes</from>
+      <to>Visitas agrupadas</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Visitas agrupadas</from>
+      <to>Secuencia visit_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Secuencia visit_id</from>
+      <to>Correspondencia visitas</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Secuencia procedure_occurrence_id</from>
+      <to>Correspondencia procedure</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Correspondencia procedure</from>
+      <to>Conexion procedure_occurrence</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Correspondencia procedure</from>
+      <to>Búsqueda en flujo de datos</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Búsqueda en flujo de datos</from>
+      <to>Secuencia image_occurrence_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Correspondencia visitas</from>
+      <to>Secuencia procedure_occurrence_id</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Añadir constantes</from>
+      <to>Búsqueda en flujo de datos</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Ordenar image_name</from>
+      <to>Unión por paciente y session</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unique rows (HashSet)</from>
+      <to>Ordenar image_filepath 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unión por paciente y session</from>
+      <to>Ordenar </to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Ordenar </from>
+      <to>Unique rows (HashSet)</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Partir campos </from>
+      <to>Ordenar image_name</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Unión por 3 ids</from>
+      <to>Ordenar image_name 2</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Ordenar image_name 2</from>
+      <to>Unión por paciente y session</to>
+      <enabled>Y</enabled>
+    </hop>
+    <hop>
+      <from>Filter rows</from>
+      <to>Filtrar participants.tsv</to>
+      <enabled>Y</enabled>
+    </hop>
   </order>
+  <step>
+    <name>Añadir constantes</name>
+    <type>Constant</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>visit_type_concept_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>32841</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>visit_concept_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>0</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+      <field>
+        <name>procedure_type_concept_id</name>
+        <type>Integer</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif>32841</nullif>
+        <length>-1</length>
+        <precision>-1</precision>
+        <set_empty_string>N</set_empty_string>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1584</xloc>
+      <yloc>608</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
   <step>
     <name>Añadir tipoError</name>
     <type>Constant</type>
@@ -723,86 +861,38 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1392</xloc>
+      <xloc>1472</xloc>
       <yloc>384</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Búsqueda personid</name>
-    <type>DBLookup</type>
+    <name>Búsqueda en flujo de datos</name>
+    <type>StreamLookup</type>
     <description/>
-    <distribute>N</distribute>
+    <distribute>Y</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Tartaglia_PT4</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
+    <from>Correspondencia procedure</from>
+    <input_sorted>N</input_sorted>
+    <preserve_memory>Y</preserve_memory>
+    <sorted_list>N</sorted_list>
+    <integer_pair>N</integer_pair>
     <lookup>
-      <schema>public</schema>
-      <table>person</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
       <key>
-        <name>idperson</name>
-        <field>person_source_value</field>
-        <condition>=</condition>
-        <name2/>
+        <name>idsession</name>
+        <field>idsession</field>
       </key>
       <value>
-        <name>person_id</name>
-        <rename>person_id</rename>
+        <name>procedure_occurrence_id</name>
+        <rename>procedure_occurrence_id</rename>
         <default/>
         <type>Integer</type>
       </value>
-    </lookup>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1504</xloc>
-      <yloc>384</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Búsqueda sesion</name>
-    <type>DBLookup</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <connection>Tartaglia_PT4</connection>
-    <cache>N</cache>
-    <cache_load_all>N</cache_load_all>
-    <cache_size>0</cache_size>
-    <lookup>
-      <schema>public</schema>
-      <table>visit_occurrence</table>
-      <orderby/>
-      <fail_on_multiple>N</fail_on_multiple>
-      <eat_row_on_failure>N</eat_row_on_failure>
-      <key>
-        <name>idsession</name>
-        <field>visit_source_value</field>
-        <condition>=</condition>
-        <name2/>
-      </key>
       <value>
         <name>visit_occurrence_id</name>
         <rename>visit_occurrence_id</rename>
@@ -819,8 +909,200 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1504</xloc>
-      <yloc>544</yloc>
+      <xloc>1360</xloc>
+      <yloc>784</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Búsqueda personid</name>
+    <type>DBLookup</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Paper_PT4</connection>
+    <cache>N</cache>
+    <cache_load_all>N</cache_load_all>
+    <cache_size>0</cache_size>
+    <lookup>
+      <schema>public</schema>
+      <table>correspondencia_pacientes</table>
+      <orderby/>
+      <fail_on_multiple>N</fail_on_multiple>
+      <eat_row_on_failure>N</eat_row_on_failure>
+      <key>
+        <name>idperson</name>
+        <field>source_id</field>
+        <condition>=</condition>
+        <name2/>
+      </key>
+      <value>
+        <name>omop_id</name>
+        <rename>person_id</rename>
+        <default/>
+        <type>Integer</type>
+      </value>
+    </lookup>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1584</xloc>
+      <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Conexion procedure_occurrence</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Paper_PT4</connection>
+    <schema>public</schema>
+    <table>procedure_occurrence</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>procedure_occurrence_id</column_name>
+        <stream_name>procedure_occurrence_id</stream_name>
+      </field>
+      <field>
+        <column_name>person_id</column_name>
+        <stream_name>person_id</stream_name>
+      </field>
+      <field>
+        <column_name>procedure_concept_id</column_name>
+        <stream_name>modality_concept_id</stream_name>
+      </field>
+      <field>
+        <column_name>procedure_date</column_name>
+        <stream_name>image_occurrence_date </stream_name>
+      </field>
+      <field>
+        <column_name>visit_occurrence_id</column_name>
+        <stream_name>visit_occurrence_id</stream_name>
+      </field>
+      <field>
+        <column_name>procedure_source_value</column_name>
+        <stream_name>modalities_1</stream_name>
+      </field>
+      <field>
+        <column_name>procedure_type_concept_id</column_name>
+        <stream_name>procedure_type_concept_id</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>880</xloc>
+      <yloc>688</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Conexion visit_occurrence</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Paper_PT4</connection>
+    <schema>public</schema>
+    <table>visit_occurrence</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>visit_occurrence_id</column_name>
+        <stream_name>visit_occurrence_id</stream_name>
+      </field>
+      <field>
+        <column_name>person_id</column_name>
+        <stream_name>person_id</stream_name>
+      </field>
+      <field>
+        <column_name>visit_concept_id</column_name>
+        <stream_name>visit_concept_id</stream_name>
+      </field>
+      <field>
+        <column_name>visit_start_date</column_name>
+        <stream_name>image_occurrence_date </stream_name>
+      </field>
+      <field>
+        <column_name>visit_end_date</column_name>
+        <stream_name>image_occurrence_date </stream_name>
+      </field>
+      <field>
+        <column_name>visit_type_concept_id</column_name>
+        <stream_name>visit_type_concept_id</stream_name>
+      </field>
+      <field>
+        <column_name>visit_source_value</column_name>
+        <stream_name>session_id</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>992</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -979,6 +1261,21 @@
         <trim_type>none</trim_type>
         <repeat>N</repeat>
       </field>
+      <field>
+        <name>project_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
     </fields>
     <limit>0</limit>
     <error_ignored>N</error_ignored>
@@ -1014,7 +1311,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>352</xloc>
+      <xloc>368</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1130,6 +1427,21 @@
         <repeat>N</repeat>
       </field>
       <field>
+        <name>SeriesInstanceUID</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
         <name>Manufacturer</name>
         <type>String</type>
         <format/>
@@ -1209,8 +1521,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>272</xloc>
-      <yloc>192</yloc>
+      <xloc>384</xloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1228,7 +1540,7 @@
     <accept_filenames>Y</accept_filenames>
     <passing_through_fields>N</passing_through_fields>
     <accept_field>filename</accept_field>
-    <accept_stepname>Filtrar sessions.tsv</accept_stepname>
+    <accept_stepname>Filtrar sessions</accept_stepname>
     <separator>	</separator>
     <enclosure>"</enclosure>
     <enclosure_breaks>N</enclosure_breaks>
@@ -1243,8 +1555,8 @@
     <nr_lines_per_page>80</nr_lines_per_page>
     <nr_lines_doc_header>0</nr_lines_doc_header>
     <noempty>Y</noempty>
-    <include>N</include>
-    <include_field/>
+    <include>Y</include>
+    <include_field>name_file</include_field>
     <rownum>N</rownum>
     <rownumByFile>N</rownumByFile>
     <rownum_field/>
@@ -1281,6 +1593,21 @@
       </field>
       <field>
         <name>session_pseudo_id</name>
+        <type>String</type>
+        <format/>
+        <currency/>
+        <decimal/>
+        <group/>
+        <nullif/>
+        <ifnull/>
+        <position>-1</position>
+        <length>-1</length>
+        <precision>-1</precision>
+        <trim_type>none</trim_type>
+        <repeat>N</repeat>
+      </field>
+      <field>
+        <name>session_uid	</name>
         <type>String</type>
         <format/>
         <currency/>
@@ -1359,59 +1686,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>416</xloc>
-      <yloc>320</yloc>
+      <xloc>384</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Conteo imágenes </name>
-    <type>GroupBy</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <all_rows>Y</all_rows>
-    <ignore_aggregate>N</ignore_aggregate>
-    <field_ignore/>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>grp</prefix>
-    <add_linenr>N</add_linenr>
-    <linenr_fieldname/>
-    <give_back_row>N</give_back_row>
-    <group>
-      <field>
-        <name>radiology_dirpath</name>
-      </field>
-    </group>
-    <fields>
-      <field>
-        <aggregate>image_total_count</aggregate>
-        <subject>radiology_dirpath</subject>
-        <type>COUNT_ANY</type>
-        <valuefield/>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>880</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Correspondencia radiologias</name>
+    <name>Correspondencia ocurrencias</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -1421,9 +1702,9 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Paper_PT4</connection>
     <schema>public</schema>
-    <table>correspondencia_radiology_occurrence</table>
+    <table>correspondencia_image_occurrence</table>
     <commit>1000</commit>
     <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
@@ -1441,11 +1722,11 @@
     <fields>
       <field>
         <column_name>source_id</column_name>
-        <stream_name>radiology_dirpath</stream_name>
+        <stream_name>image_filepath</stream_name>
       </field>
       <field>
         <column_name>omop_id</column_name>
-        <stream_name>radiology_occurrence_id</stream_name>
+        <stream_name>image_occurrence_id</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -1457,8 +1738,112 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1296</xloc>
-      <yloc>736</yloc>
+      <xloc>960</xloc>
+      <yloc>784</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Correspondencia procedure</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Paper_PT4</connection>
+    <schema>public</schema>
+    <table>correspondencia_procedure_occurrence</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>source_id</column_name>
+        <stream_name>idsession</stream_name>
+      </field>
+      <field>
+        <column_name>omop_id</column_name>
+        <stream_name>procedure_occurrence_id</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1056</xloc>
+      <yloc>688</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Correspondencia visitas</name>
+    <type>TableOutput</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <connection>Paper_PT4</connection>
+    <schema>public</schema>
+    <table>correspondencia_visitas</table>
+    <commit>1000</commit>
+    <truncate>Y</truncate>
+    <ignore_errors>N</ignore_errors>
+    <use_batch>Y</use_batch>
+    <specify_fields>Y</specify_fields>
+    <partitioning_enabled>N</partitioning_enabled>
+    <partitioning_field/>
+    <partitioning_daily>N</partitioning_daily>
+    <partitioning_monthly>Y</partitioning_monthly>
+    <tablename_in_field>N</tablename_in_field>
+    <tablename_field/>
+    <tablename_in_table>Y</tablename_in_table>
+    <return_keys>N</return_keys>
+    <return_field/>
+    <fields>
+      <field>
+        <column_name>source_id</column_name>
+        <stream_name>idsession</stream_name>
+      </field>
+      <field>
+        <column_name>omop_id</column_name>
+        <stream_name>visit_occurrence_id</stream_name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1152</xloc>
+      <yloc>608</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1476,7 +1861,7 @@
     <fields>
       <field>
         <in_stream_name>modalities	</in_stream_name>
-        <out_stream_name>modalities	</out_stream_name>
+        <out_stream_name>modalities_1</out_stream_name>
         <use_regex>yes</use_regex>
         <replace_string>\[|\]|'</replace_string>
         <replace_by_string> </replace_by_string>
@@ -1488,7 +1873,7 @@
       </field>
       <field>
         <in_stream_name>body_parts</in_stream_name>
-        <out_stream_name>body_parts</out_stream_name>
+        <out_stream_name>body_parts_1</out_stream_name>
         <use_regex>yes</use_regex>
         <replace_string>\[|\]|'</replace_string>
         <replace_by_string/>
@@ -1508,7 +1893,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>512</xloc>
+      <xloc>528</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1538,7 +1923,7 @@
     <fileNameField/>
     <create_parent_folder>Y</create_parent_folder>
     <file>
-      <name>C:\Users\benaven\Desktop\Tartaglia\PT4\Logs error\Error_personid_radiologyoccurrence.txt</name>
+      <name>${PATH_TO_LOGS}/ETLs_Imagen/Error_personid_radiologyoccurrence.txt</name>
       <servlet_output>N</servlet_output>
       <do_not_open_new_file_init>N</do_not_open_new_file_init>
       <extention>txt</extention>
@@ -1589,8 +1974,52 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1264</xloc>
+      <xloc>1344</xloc>
       <yloc>384</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filter rows</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Visualizar resultados</send_true_to>
+    <send_false_to>Filtrar participants.tsv</send_false_to>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <leftvalue>filename</leftvalue>
+        <function>CONTAINS</function>
+        <rightvalue/>
+        <value>
+          <name>constant</name>
+          <type>String</type>
+          <text>derivatives</text>
+          <length>-1</length>
+          <precision>-1</precision>
+          <isnull>N</isnull>
+          <mask/>
+        </value>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>32</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1598,7 +2027,7 @@
     <name>Filtrar imágenes</name>
     <type>FilterRows</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
@@ -1633,8 +2062,57 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>368</xloc>
-      <yloc>192</yloc>
+      <xloc>512</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Filtrar imágenes 2</name>
+    <type>FilterRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <send_true_to>Obtener path </send_true_to>
+    <send_false_to/>
+    <compare>
+      <condition>
+        <negated>N</negated>
+        <conditions>
+          <condition>
+            <negated>N</negated>
+            <leftvalue>filename</leftvalue>
+            <function>CONTAINS</function>
+            <rightvalue/>
+            <value>
+              <name>constant</name>
+              <type>String</type>
+              <text>nii.gz</text>
+              <length>-1</length>
+              <precision>-1</precision>
+              <isnull>N</isnull>
+              <mask/>
+            </value>
+          </condition>
+        </conditions>
+      </condition>
+    </compare>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>288</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1677,7 +2155,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
+      <xloc>224</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
@@ -1721,13 +2199,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>192</yloc>
+      <xloc>224</xloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Filtrar sessions.tsv</name>
+    <name>Filtrar sessions</name>
     <type>FilterRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -1765,13 +2243,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>176</xloc>
-      <yloc>320</yloc>
+      <xloc>256</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Formato anatomic</name>
+    <name>Formato date</name>
     <type>SelectValues</type>
     <description/>
     <distribute>Y</distribute>
@@ -1782,55 +2260,28 @@
       <schema_name/>
     </partitioning>
     <fields>
-      <select_unspecified>N</select_unspecified>
-      <meta>
-        <name>anatomic_site_concept_id</name>
-        <rename>anatomic_site_concept_id</rename>
-        <type>Integer</type>
-        <length>-2</length>
-        <precision>-2</precision>
-        <conversion_mask/>
-        <date_format_lenient>false</date_format_lenient>
-        <date_format_locale/>
-        <date_format_timezone/>
-        <lenient_string_to_number>false</lenient_string_to_number>
-        <encoding/>
-        <decimal_symbol/>
-        <grouping_symbol/>
-        <currency_symbol/>
-        <storage_type/>
-      </meta>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>784</xloc>
-      <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Formato date 2</name>
-    <type>SelectValues</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <fields>
+      <field>
+        <name>session_uid	</name>
+      </field>
+      <field>
+        <name>acquisition_date_Time</name>
+      </field>
+      <field>
+        <name>project_id</name>
+      </field>
+      <field>
+        <name>patient_id</name>
+      </field>
+      <field>
+        <name>session_id</name>
+      </field>
+      <field>
+        <name>name_file</name>
+      </field>
       <select_unspecified>N</select_unspecified>
       <meta>
         <name>acquisition_date_Time</name>
-        <rename>radiology_occurrence_date</rename>
+        <rename>image_occurrence_date </rename>
         <type>Date</type>
         <length>-2</length>
         <precision>-2</precision>
@@ -1855,13 +2306,90 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>688</xloc>
-      <yloc>320</yloc>
+      <xloc>640</xloc>
+      <yloc>176</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Mapeo de valores</name>
+    <name>Formato numerico</name>
+    <type>SelectValues</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <name>anatomic_site_concept_id</name>
+      </field>
+      <field>
+        <name>participant_id</name>
+      </field>
+      <field>
+        <name>modality_concept_id</name>
+      </field>
+      <field>
+        <name>project_id</name>
+      </field>
+      <field>
+        <name>modalities_1</name>
+      </field>
+      <select_unspecified>N</select_unspecified>
+      <meta>
+        <name>anatomic_site_concept_id</name>
+        <rename>anatomic_site_concept_id</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>modality_concept_id</name>
+        <rename>modality_concept_id</rename>
+        <type>Integer</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1024</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Mapeo de valores lugar anatomico</name>
     <type>ValueMapper</type>
     <description/>
     <distribute>Y</distribute>
@@ -1897,13 +2425,212 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>672</xloc>
+      <xloc>864</xloc>
       <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Ordenar dirpath</name>
+    <name>Mapeo de valores modalidad</name>
+    <type>ValueMapper</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <field_to_use>modalities	</field_to_use>
+    <target_field>modality_concept_id</target_field>
+    <non_match_default/>
+    <fields>
+      <field>
+        <source_value>['MR']</source_value>
+        <target_value>4013636</target_value>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>688</xloc>
+      <yloc>64</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Obtener ids</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>name_file</in_stream_name>
+        <out_stream_name>patient_id</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>.*?(sub-\w+).*</replace_string>
+        <replace_by_string>$1</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>name_file</in_stream_name>
+        <out_stream_name>session_id</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>.*?(ses-\w+).*</replace_string>
+        <replace_by_string>$1</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>name_file</in_stream_name>
+        <out_stream_name>project_id</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>.*?(p0\w+).*</replace_string>
+        <replace_by_string>$1</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Obtener ids 2</name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>image_filepath</in_stream_name>
+        <out_stream_name>patient_id</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>.*?(sub-\w+).*</replace_string>
+        <replace_by_string>$1</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>image_filepath</in_stream_name>
+        <out_stream_name>session_id</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>.*?(ses-\w+).*</replace_string>
+        <replace_by_string>$1</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+      <field>
+        <in_stream_name>image_filepath</in_stream_name>
+        <out_stream_name>project_id</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>.*?(p0\w+).*</replace_string>
+        <replace_by_string>$1</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>528</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Obtener path </name>
+    <type>ReplaceString</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <fields>
+      <field>
+        <in_stream_name>filename</in_stream_name>
+        <out_stream_name>image_filepath</out_stream_name>
+        <use_regex>yes</use_regex>
+        <replace_string>.*?(p\d+\\.*$)</replace_string>
+        <replace_by_string>$1</replace_by_string>
+        <set_empty_string>N</set_empty_string>
+        <replace_field_by_string/>
+        <whole_word>no</whole_word>
+        <case_sensitive>no</case_sensitive>
+        <is_unicode>no</is_unicode>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>416</xloc>
+      <yloc>288</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Ordenar </name>
     <type>SortRows</type>
     <description/>
     <distribute>N</distribute>
@@ -1922,7 +2649,73 @@
     <unique_rows>N</unique_rows>
     <fields>
       <field>
-        <name>radiology_dirpath</name>
+        <name>image_filepath</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>SeriesInstanceUID</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1184</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Ordenar ids</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>patient_id</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>session_id</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>project_id</name>
         <ascending>Y</ascending>
         <case_sensitive>N</case_sensitive>
         <collator_enabled>N</collator_enabled>
@@ -1940,7 +2733,65 @@
     </remotesteps>
     <GUI>
       <xloc>784</xloc>
-      <yloc>192</yloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Ordenar ids 2</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>patient_id</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>session_id</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+      <field>
+        <name>project_id</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>624</xloc>
+      <yloc>288</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -1981,13 +2832,181 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1504</xloc>
-      <yloc>640</yloc>
+      <xloc>1584</xloc>
+      <yloc>544</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Ordenar participant_id</name>
+    <name>Ordenar image_filepath</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>image_filepath</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1472</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Ordenar image_filepath 2</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>image_filepath</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1472</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Ordenar image_name</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>image_name</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>912</xloc>
+      <yloc>400</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Ordenar image_name 2</name>
+    <type>SortRows</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <directory>%%java.io.tmpdir%%</directory>
+    <prefix>out</prefix>
+    <sort_size>1000000</sort_size>
+    <free_memory/>
+    <compress>N</compress>
+    <compress_variable/>
+    <unique_rows>N</unique_rows>
+    <fields>
+      <field>
+        <name>short_filename</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>976</xloc>
+      <yloc>208</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Ordenar participant_id y project_id</name>
     <type>SortRows</type>
     <description/>
     <distribute>Y</distribute>
@@ -2013,6 +3032,14 @@
         <collator_strength>0</collator_strength>
         <presorted>N</presorted>
       </field>
+      <field>
+        <name>project_id</name>
+        <ascending>Y</ascending>
+        <case_sensitive>N</case_sensitive>
+        <collator_enabled>N</collator_enabled>
+        <collator_strength>0</collator_strength>
+        <presorted>N</presorted>
+      </field>
     </fields>
     <attributes/>
     <cluster_schema/>
@@ -2023,218 +3050,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>928</xloc>
+      <xloc>1184</xloc>
       <yloc>64</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Ordenar patient_id</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>patient_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1120</xloc>
-      <yloc>144</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Ordenar session_id 1</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>session_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1360</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Ordenar session_id 2</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>session_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1360</xloc>
-      <yloc>272</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Ordenar session_id scans</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>session_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1120</xloc>
-      <yloc>224</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Ordenar session_id sessions</name>
-    <type>SortRows</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <directory>%%java.io.tmpdir%%</directory>
-    <prefix>out</prefix>
-    <sort_size>1000000</sort_size>
-    <free_memory/>
-    <compress>N</compress>
-    <compress_variable/>
-    <unique_rows>N</unique_rows>
-    <fields>
-      <field>
-        <name>session_id</name>
-        <ascending>Y</ascending>
-        <case_sensitive>N</case_sensitive>
-        <collator_enabled>N</collator_enabled>
-        <collator_strength>0</collator_strength>
-        <presorted>N</presorted>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>928</xloc>
-      <yloc>320</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
@@ -2249,7 +3066,7 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <send_true_to>Búsqueda sesion</send_true_to>
+    <send_true_to>Ordenar idsession</send_true_to>
     <send_false_to>Búsqueda sesion</send_false_to>
     <compare>
       <condition>
@@ -2274,7 +3091,7 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1504</xloc>
+      <xloc>1584</xloc>
       <yloc>464</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2310,7 +3127,22 @@
         <trimtype>none</trimtype>
       </field>
       <field>
-        <name>file2</name>
+        <name>scan_type</name>
+        <id/>
+        <idrem>N</idrem>
+        <type>String</type>
+        <format/>
+        <group/>
+        <decimal/>
+        <currency/>
+        <length>-1</length>
+        <precision>-1</precision>
+        <nullif/>
+        <ifnull/>
+        <trimtype>none</trimtype>
+      </field>
+      <field>
+        <name>image_name</name>
         <id/>
         <idrem>N</idrem>
         <type>String</type>
@@ -2334,106 +3166,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>464</xloc>
-      <yloc>192</yloc>
+      <xloc>640</xloc>
+      <yloc>400</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Partir campos  2</name>
-    <type>FieldSplitter</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <splitfield>file2</splitfield>
-    <delimiter>_</delimiter>
-    <enclosure/>
-    <fields>
-      <field>
-        <name>patient_id</name>
-        <id/>
-        <idrem>N</idrem>
-        <type>String</type>
-        <format/>
-        <group/>
-        <decimal/>
-        <currency/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <nullif/>
-        <ifnull/>
-        <trimtype>none</trimtype>
-      </field>
-      <field>
-        <name>session_id</name>
-        <id/>
-        <idrem>N</idrem>
-        <type>String</type>
-        <format/>
-        <group/>
-        <decimal/>
-        <currency/>
-        <length>-1</length>
-        <precision>-1</precision>
-        <nullif/>
-        <ifnull/>
-        <trimtype>none</trimtype>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>560</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Radiologias unicas</name>
-    <type>UniqueRowsByHashSet</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <store_values>N</store_values>
-    <reject_duplicate_row>N</reject_duplicate_row>
-    <error_description/>
-    <fields>
-      <field>
-        <name>radiology_dirpath</name>
-      </field>
-    </fields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>992</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Rutas </name>
+    <name>Rutas General</name>
     <type>GetFileNames</type>
     <description/>
     <distribute>N</distribute>
@@ -2457,8 +3196,8 @@
     <dynamic_include_subfolders>N</dynamic_include_subfolders>
     <limit>0</limit>
     <file>
-      <name>C:\Users\benaven\Desktop\Tartaglia\PT4\Prueba piloto variables + img\ETLs completas\p0042021-prostata-fisabio</name>
-      <filemask/>
+      <name>C:\Users\benaven\Desktop\Tartaglia\paper\p0042021</name>
+      <filemask>((sub-).*)|(participants.tsv)</filemask>
       <exclude_filemask/>
       <file_required>N</file_required>
       <include_subfolders>Y</include_subfolders>
@@ -2472,13 +3211,13 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>48</xloc>
-      <yloc>192</yloc>
+      <xloc>32</xloc>
+      <yloc>64</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Secuencia id_radiology_occurrence</name>
+    <name>Secuencia image_occurrence_id</name>
     <type>Sequence</type>
     <description/>
     <distribute>Y</distribute>
@@ -2488,11 +3227,11 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <valuename>radiology_occurrence_id</valuename>
+    <valuename>image_occurrence_id</valuename>
     <use_database>Y</use_database>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Paper_PT4</connection>
     <schema>public</schema>
-    <seqname>radiology_occurrence_id</seqname>
+    <seqname>image_occurrence_id</seqname>
     <use_counter>N</use_counter>
     <counter_name/>
     <start_at>1</start_at>
@@ -2507,99 +3246,32 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1504</xloc>
-      <yloc>736</yloc>
+      <xloc>1168</xloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>Unión por paciente</name>
-    <type>MergeJoin</type>
+    <name>Secuencia procedure_occurrence_id</name>
+    <type>Sequence</type>
     <description/>
-    <distribute>Y</distribute>
+    <distribute>N</distribute>
     <custom_distribution/>
     <copies>1</copies>
     <partitioning>
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <join_type>INNER</join_type>
-    <step1>Ordenar participant_id</step1>
-    <step2>Ordenar patient_id</step2>
-    <keys_1>
-      <key>participant_id</key>
-    </keys_1>
-    <keys_2>
-      <key>patient_id</key>
-    </keys_2>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1232</xloc>
-      <yloc>112</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Unión por radiology_dirpath</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <join_type>INNER</join_type>
-    <step1>Ordenar session_id 1</step1>
-    <step2>Ordenar session_id 2</step2>
-    <keys_1>
-      <key>radiology_dirpath</key>
-    </keys_1>
-    <keys_2>
-      <key>radiology_dirpath</key>
-    </keys_2>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>1504</xloc>
-      <yloc>192</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>Unión por session</name>
-    <type>MergeJoin</type>
-    <description/>
-    <distribute>Y</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <join_type>INNER</join_type>
-    <step1>Ordenar session_id sessions</step1>
-    <step2>Ordenar session_id scans</step2>
-    <keys_1>
-      <key>session_id</key>
-    </keys_1>
-    <keys_2>
-      <key>session_id</key>
-    </keys_2>
+    <valuename>procedure_occurrence_id</valuename>
+    <use_database>Y</use_database>
+    <connection>Paper_PT4</connection>
+    <schema>public</schema>
+    <seqname>procedure_id</seqname>
+    <use_counter>N</use_counter>
+    <counter_name/>
+    <start_at>1</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
     <attributes/>
     <cluster_schema/>
     <remotesteps>
@@ -2610,6 +3282,216 @@
     </remotesteps>
     <GUI>
       <xloc>1248</xloc>
+      <yloc>688</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Secuencia visit_id</name>
+    <type>Sequence</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <valuename>visit_occurrence_id</valuename>
+    <use_database>Y</use_database>
+    <connection>Paper_PT4</connection>
+    <schema>public</schema>
+    <seqname>visit_occurrence_id</seqname>
+    <use_counter>N</use_counter>
+    <counter_name/>
+    <start_at>1</start_at>
+    <increment_by>1</increment_by>
+    <max_value>999999999</max_value>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1296</xloc>
+      <yloc>608</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unique rows (HashSet)</name>
+    <type>UniqueRowsByHashSet</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <store_values>N</store_values>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>
+      <field>
+        <name>image_filepath</name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1312</xloc>
+      <yloc>272</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unión por 3 ids</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>RIGHT OUTER</join_type>
+    <step1>Ordenar ids</step1>
+    <step2>Ordenar ids 2</step2>
+    <keys_1>
+      <key>patient_id</key>
+      <key>session_id</key>
+      <key>project_id</key>
+    </keys_1>
+    <keys_2>
+      <key>patient_id</key>
+      <key>session_id</key>
+      <key>project_id</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>928</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unión por image_filepath</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Ordenar image_filepath</step1>
+    <step2>Ordenar image_filepath 2</step2>
+    <keys_1>
+      <key>image_filepath</key>
+    </keys_1>
+    <keys_2>
+      <key>image_filepath</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1584</xloc>
+      <yloc>192</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unión por paciente y project</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Ordenar participant_id y project_id</step1>
+    <step2>Unión por 3 ids</step2>
+    <keys_1>
+      <key>participant_id</key>
+      <key>project_id</key>
+    </keys_1>
+    <keys_2>
+      <key>patient_id</key>
+      <key>project_id</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1312</xloc>
+      <yloc>112</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Unión por paciente y session</name>
+    <type>MergeJoin</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <join_type>INNER</join_type>
+    <step1>Ordenar image_name 2</step1>
+    <step2>Ordenar image_name</step2>
+    <keys_1>
+      <key>short_filename</key>
+    </keys_1>
+    <keys_2>
+      <key>image_name</key>
+    </keys_2>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1040</xloc>
       <yloc>272</yloc>
       <draw>Y</draw>
     </GUI>
@@ -2635,40 +3517,51 @@
         <rename>idsession</rename>
       </field>
       <field>
-        <name>radiology_occurrence_date</name>
+        <name>image_occurrence_date </name>
       </field>
       <field>
-        <name>modalities	_1</name>
-        <rename>radiology_modality_concept</rename>
+        <name>modality_concept_id</name>
       </field>
       <field>
-        <name>radiology_dirpath</name>
-      </field>
-      <field>
-        <name>radiology_protocol_concept_id </name>
-      </field>
-      <field>
-        <name>radiology_report</name>
-        <rename>radiology_comment</rename>
+        <name>image_filepath</name>
       </field>
       <field>
         <name>anatomic_site_concept_id</name>
       </field>
       <field>
-        <name>SeriesNumber</name>
+        <name>session_id</name>
       </field>
       <field>
-        <name>image_total_count</name>
+        <name>modalities_1</name>
       </field>
       <field>
-        <name>Manufacturer</name>
-        <rename>device_manufacturer</rename>
+        <name>SeriesInstanceUID</name>
+      </field>
+      <field>
+        <name>session_uid	</name>
       </field>
       <select_unspecified>N</select_unspecified>
       <meta>
-        <name>SeriesNumber</name>
-        <rename>series_total_count</rename>
-        <type>Integer</type>
+        <name>SeriesInstanceUID</name>
+        <rename>image_series_UID </rename>
+        <type>None</type>
+        <length>-2</length>
+        <precision>-2</precision>
+        <conversion_mask/>
+        <date_format_lenient>false</date_format_lenient>
+        <date_format_locale/>
+        <date_format_timezone/>
+        <lenient_string_to_number>false</lenient_string_to_number>
+        <encoding/>
+        <decimal_symbol/>
+        <grouping_symbol/>
+        <currency_symbol/>
+        <storage_type/>
+      </meta>
+      <meta>
+        <name>session_uid	</name>
+        <rename>image_study_UID </rename>
+        <type>None</type>
         <length>-2</length>
         <precision>-2</precision>
         <conversion_mask/>
@@ -2692,13 +3585,77 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1504</xloc>
+      <xloc>1584</xloc>
       <yloc>304</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
   <step>
-    <name>conexion bdd </name>
+    <name>Visitas agrupadas</name>
+    <type>UniqueRowsByHashSet</type>
+    <description/>
+    <distribute>Y</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <store_values>N</store_values>
+    <reject_duplicate_row>N</reject_duplicate_row>
+    <error_description/>
+    <fields>
+      <field>
+        <name>idsession</name>
+      </field>
+      <field>
+        <name>idperson</name>
+      </field>
+      <field>
+        <name>image_occurrence_date </name>
+      </field>
+    </fields>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>1440</xloc>
+      <yloc>608</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>Visualizar resultados</name>
+    <type>Dummy</type>
+    <description/>
+    <distribute>N</distribute>
+    <custom_distribution/>
+    <copies>1</copies>
+    <partitioning>
+      <method>none</method>
+      <schema_name/>
+    </partitioning>
+    <attributes/>
+    <cluster_schema/>
+    <remotesteps>
+      <input>
+      </input>
+      <output>
+      </output>
+    </remotesteps>
+    <GUI>
+      <xloc>128</xloc>
+      <yloc>176</yloc>
+      <draw>Y</draw>
+    </GUI>
+  </step>
+  <step>
+    <name>conexion image_occurrence</name>
     <type>TableOutput</type>
     <description/>
     <distribute>Y</distribute>
@@ -2708,11 +3665,11 @@
       <method>none</method>
       <schema_name/>
     </partitioning>
-    <connection>Tartaglia_PT4</connection>
+    <connection>Paper_PT4</connection>
     <schema>public</schema>
-    <table>radiology_occurrence</table>
+    <table>image_occurrence</table>
     <commit>1000</commit>
-    <truncate>N</truncate>
+    <truncate>Y</truncate>
     <ignore_errors>N</ignore_errors>
     <use_batch>Y</use_batch>
     <specify_fields>Y</specify_fields>
@@ -2727,52 +3684,44 @@
     <return_field/>
     <fields>
       <field>
+        <column_name>image_occurrence_id</column_name>
+        <stream_name>image_occurrence_id</stream_name>
+      </field>
+      <field>
         <column_name>person_id</column_name>
         <stream_name>person_id</stream_name>
       </field>
       <field>
-        <column_name>radiology_occurrence_id</column_name>
-        <stream_name>radiology_occurrence_id</stream_name>
+        <column_name>procedure_occurrence_id</column_name>
+        <stream_name>procedure_occurrence_id</stream_name>
       </field>
       <field>
-        <column_name>radiology_occurrence_date</column_name>
-        <stream_name>radiology_occurrence_date</stream_name>
-      </field>
-      <field>
-        <column_name>device_manufacturer</column_name>
-        <stream_name>device_manufacturer</stream_name>
-      </field>
-      <field>
-        <column_name>radiology_modality_concept</column_name>
-        <stream_name>radiology_modality_concept</stream_name>
-      </field>
-      <field>
-        <column_name>radiology_dirpath</column_name>
-        <stream_name>radiology_dirpath</stream_name>
-      </field>
-      <field>
-        <column_name>radiology_protocol_concept_id</column_name>
-        <stream_name>radiology_protocol_concept_id </stream_name>
-      </field>
-      <field>
-        <column_name>radiology_comment</column_name>
-        <stream_name>radiology_comment</stream_name>
+        <column_name>visit_occurrence_id</column_name>
+        <stream_name>visit_occurrence_id</stream_name>
       </field>
       <field>
         <column_name>anatomic_site_concept_id</column_name>
         <stream_name>anatomic_site_concept_id</stream_name>
       </field>
       <field>
-        <column_name>image_total_count</column_name>
-        <stream_name>image_total_count</stream_name>
+        <column_name>local_path</column_name>
+        <stream_name>image_filepath</stream_name>
       </field>
       <field>
-        <column_name>series_total_count</column_name>
-        <stream_name>series_total_count</stream_name>
+        <column_name>image_occurrence_date</column_name>
+        <stream_name>image_occurrence_date </stream_name>
       </field>
       <field>
-        <column_name>device_concept_id</column_name>
-        <stream_name>series_total_count</stream_name>
+        <column_name>image_study_uid</column_name>
+        <stream_name>image_study_UID </stream_name>
+      </field>
+      <field>
+        <column_name>image_series_uid</column_name>
+        <stream_name>image_series_UID </stream_name>
+      </field>
+      <field>
+        <column_name>modality_concept_id</column_name>
+        <stream_name>modality_concept_id</stream_name>
       </field>
     </fields>
     <attributes/>
@@ -2784,106 +3733,8 @@
       </output>
     </remotesteps>
     <GUI>
-      <xloc>1120</xloc>
-      <yloc>736</yloc>
-      <draw>Y</draw>
-    </GUI>
-  </step>
-  <step>
-    <name>radiology_dirpath</name>
-    <type>ConcatFields</type>
-    <description/>
-    <distribute>N</distribute>
-    <custom_distribution/>
-    <copies>1</copies>
-    <partitioning>
-      <method>none</method>
-      <schema_name/>
-    </partitioning>
-    <separator>/</separator>
-    <enclosure/>
-    <enclosure_forced>N</enclosure_forced>
-    <enclosure_fix_disabled>N</enclosure_fix_disabled>
-    <header>N</header>
-    <footer>N</footer>
-    <format>DOS</format>
-    <compression>None</compression>
-    <encoding/>
-    <endedLine/>
-    <fileNameInField>N</fileNameInField>
-    <fileNameField/>
-    <create_parent_folder>Y</create_parent_folder>
-    <file>
-      <name/>
-      <servlet_output>N</servlet_output>
-      <do_not_open_new_file_init>N</do_not_open_new_file_init>
-      <extention>txt</extention>
-      <append>N</append>
-      <split>N</split>
-      <haspartno>N</haspartno>
-      <add_date>N</add_date>
-      <add_time>N</add_time>
-      <SpecifyFormat>N</SpecifyFormat>
-      <date_time_format/>
-      <add_to_result_filenames>Y</add_to_result_filenames>
-      <pad>N</pad>
-      <fast_dump>N</fast_dump>
-      <splitevery>0</splitevery>
-    </file>
-    <fields>
-      <field>
-        <name>patient_id</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>session_id</name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-      <field>
-        <name>radiology_protocol_concept_id </name>
-        <type>String</type>
-        <format/>
-        <currency/>
-        <decimal/>
-        <group/>
-        <nullif/>
-        <trim_type>none</trim_type>
-        <length>-1</length>
-        <precision>-1</precision>
-      </field>
-    </fields>
-    <ConcatFields>
-      <targetFieldName>radiology_dirpath</targetFieldName>
-      <targetFieldLength>0</targetFieldLength>
-      <removeSelectedFields>N</removeSelectedFields>
-    </ConcatFields>
-    <attributes/>
-    <cluster_schema/>
-    <remotesteps>
-      <input>
-      </input>
-      <output>
-      </output>
-    </remotesteps>
-    <GUI>
-      <xloc>672</xloc>
-      <yloc>192</yloc>
+      <xloc>768</xloc>
+      <yloc>784</yloc>
       <draw>Y</draw>
     </GUI>
   </step>
